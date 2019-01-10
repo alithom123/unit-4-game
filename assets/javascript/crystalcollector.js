@@ -49,18 +49,44 @@ $('button.gem-button').click(function() {
     $('#score').text(score);
     
     if(checkWin()) {
-        displayWin();
+        won();
+    } else if (checkLoss()) {
+        lost();
     }
 });
 
 $('#play-button').click(function() {
     console.log("in click of play button.");
+    $("#play-button").hide();
     resetGame();
 });
 
+function won() {
+    console.log("won!");
+    wins++;
+    $('#wins').text(wins);
+    $('#play-button').text("Play Again").show();
+}
+
+function lost() {
+    console.log("won!");
+    losses++;
+    // <p id="wins">Wins: 0</p>
+    // <p id="losses">Losses: 0</p>
+    $('#losses').text(losses);
+    $('#play-button').text("Play Again").show();
+}
 
 function checkWin() {
     if(score === target) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function checkLoss() {
+    if(score > target) {
         return true;
     } else {
         return false;
